@@ -7,6 +7,10 @@ require('dotenv').config();
 const { Pool } = require('pg');
 
 const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // only if you face SSL errors (Neon uses SSL)
+  },
   host: process.env.PG_HOST ?? "localhost",
   port: parseInt(process.env.PG_PORT ?? "5432", 10),
   user: process.env.PG_USER ?? "postgres",
