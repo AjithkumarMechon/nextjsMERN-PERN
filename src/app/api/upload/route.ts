@@ -3,6 +3,7 @@ import { Buffer } from 'buffer';
 const pool=require("@/utils/postgresql");
 
 
+
   export const config = { api: { bodyParser: false } };
 
 async function ensureTableExists() {

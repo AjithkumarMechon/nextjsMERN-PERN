@@ -36,11 +36,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
-## PostgreSQL
-password   0000
-port  5432
-
-
 ## Details of Project
 Project make technology Nextjs
 React, Nodejs, ExpressJs, MongoDb and Postgresql

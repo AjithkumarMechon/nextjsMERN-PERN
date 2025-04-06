@@ -8,5 +8,11 @@ const pool = new Pool({
     password: process.env.PG_PASSWORD,
     database: process.env.PG_DATABASE ?? "fullstacknextjs"
 });
-
+pool.connect()
+  .then(client => {
+    client.release();
+  })
+  .catch(err => {
+    console.error("PostgreSQL connection error:", err.stack);
+  });
 module.exports = pool;
