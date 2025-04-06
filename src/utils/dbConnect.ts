@@ -37,11 +37,10 @@ const postgresConnect=async()=>{
   
   try {
     // Connect to PostgreSQL
+    await pool.connect();
     if (!pool) {
       throw new Error("❌ POSTGRES_URI is not defined in environment variables.");
-    }
-    
-    await pool.connect();
+    }    
     console.log("✅ PostgreSQL connected successfully");
   } catch (error) {
     console.error("❌ PostgreSQL connection failed:", (error as Error).message);
