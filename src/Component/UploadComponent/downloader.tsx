@@ -6,8 +6,8 @@ function DownloadPDF({ fileName }) {
   };
 
   return (
-    <button onClick={handleDownload} className="px-4 py-2 bg-green-500 text-white rounded">
-      Download {fileName}
+    <button onClick={handleDownload}  className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded shadow transition">
+      {fileName}
     </button>
   );
 }

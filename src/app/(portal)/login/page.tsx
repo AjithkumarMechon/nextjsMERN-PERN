@@ -42,21 +42,24 @@ useEffect(() => {
     setPending(true);
     try {
       const payload={...formData,  password: btoa(formData.password)};
-      const response = await axios.post(
-        "/api/auth/signin",
-        payload,
-        { headers: { "Content-Type": "application/json" } }
-      );
-
+      const response = await axios.post("/api/auth/signin", payload );
       if (response?.data?.status === 200) {
       Cookies.set("token", response.data.accessToken, { expires: 1/24, secure: true, sameSite: "Strict" });
+        toast.success(`${response?.data?.message??"Login sucessfully"}`)
         router.push("/dashboard");
       }
-    } catch (error) {
-      console.error("Login failed:", error);
-    } finally {
-      setPending(false);
-    }
+    } catch (error:any) {
+    if (error.response) {
+     toast.error(`${error.response.data.message}`);
+    } else if (error.request) {
+     toast.error(`${error.request}`);
+    } else {
+     toast.error(`${error.message}`);
+      }  
+    //  toast.error(`${error.config}`);
+  } finally {
+    setPending(false);
+  }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

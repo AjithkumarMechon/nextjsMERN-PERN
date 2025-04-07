@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 const express = require("express");
 import dotenv from "dotenv";
 import cors from "cors";  
@@ -18,24 +17,24 @@ const pool = new Pool({
   database: process.env.PG_DATABASE ?? "fullstacknextjs"
 });
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+// const MONGODB_URI = process.env.MONGODB_URI as string;
 
 dotenv.config();
 const app = express();
 const port = process.env.HOST_ENV ?? "";
 
-const dbConnect = async () => {
-  try {
-    await mongoose.connect(MONGODB_URI);
-    if (!MONGODB_URI) {
-    throw new Error("❌ MONGO_URI is not defined in environment variables.");
-      }
-    console.log("MongoDB connected successfully");
-  } catch (error) {
-    console.error("MongoDB connection failed:", (error as Error).message);
-    throw new Error("MongoDB connection failed");
-  }
-};
+// const dbConnect = async () => {
+//   try {
+//     await mongoose.connect(MONGODB_URI);
+//     if (!MONGODB_URI) {
+//     throw new Error("❌ MONGO_URI is not defined in environment variables.");
+//       }
+//     console.log("MongoDB connected successfully");
+//   } catch (error) {
+//     console.error("MongoDB connection failed:", (error as Error).message);
+//     throw new Error("MongoDB connection failed");
+//   }
+// };
 
 const postgresConnect=async()=>{
   
@@ -60,4 +59,5 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-export { dbConnect, postgresConnect };
+// export { dbConnect, postgresConnect };
+export { postgresConnect };

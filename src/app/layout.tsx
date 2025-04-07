@@ -15,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ajee Foods",
+  title: "AKTrends",
   description: "Hygineic food essential to our healthy life. You and your family health is our periority!.",
+   icons: {
+    icon: "favicon.svg.svg", 
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +32,7 @@ export default function RootLayout({
       <body>            
             <SessionProviderWrapper>
               <ReduxProvider>
-                 {children}
+                 {children}                 
               </ReduxProvider>
             </SessionProviderWrapper>   
       </body>

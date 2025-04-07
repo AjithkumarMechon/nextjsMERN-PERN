@@ -14,7 +14,6 @@ const convertFileToBase64 = (file) => {
         reader.readAsDataURL(file);
         reader.onload = () => {
             // Remove metadata (e.g., "data:application/pdf;base64,")
-            // const base64Data = (reader as any)?.result;
             const base64Data = (reader as any)?.result?.split(",")[1];
             resolve(base64Data);
         };
@@ -33,11 +32,24 @@ const handleUpload = async () => {
 };
 
   return (
-    <div className="p-6 border-2 border-blue-500 w-2/6" >
-      <h2 className="text-xl mb-4">Upload PDF</h2>
-      <input type="file" accept="application/pdf" onChange={(e:any) => setFile(e.target.files[0])} />
-      <button onClick={handleUpload} className="ml-4 px-4 py-2 bg-blue-500 text-white rounded">Upload</button>
-      </div>
+<div className="p-6 border-2 border-blue-500 max-w-xl w-full mx-auto">
+  <h2 className="mb-4 text-2xl font-semibold text-blue-600">Upload PDF</h2>  
+  <div className="flex flex-col md:flex-row gap-4">
+    <input
+      type="file"
+      accept="application/pdf"
+      onChange={(e: any) => setFile(e.target.files[0])}
+        className="flex-1 border border-gray-300 rounded px-3 py-2"
+    />
+    <button
+      onClick={handleUpload}
+        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition "
+    >
+      Upload
+    </button>
+  </div>
+</div>
+
   );
 }
 

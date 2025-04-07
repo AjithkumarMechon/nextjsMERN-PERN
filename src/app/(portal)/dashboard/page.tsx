@@ -19,7 +19,6 @@ import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/docu
  function Dashboard({actions, userData, imageList, imageListoading}) {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true); 
-  const [data, setData] = useState<any>([]); 
   const [imageListData, setImageListData] = useState<any>([]); 
 
 
@@ -27,12 +26,6 @@ import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/docu
     actions.fetchDashboard();
     actions.fetchDocumentList();
   },[actions])
-
-  useEffect(()=>{
-    if (userData) {
-      setData(userData?.data);      
-    }
-  }, [userData])
 
     useEffect(()=>{
     if (imageList) {
@@ -63,34 +56,24 @@ import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/docu
     actions.fetchDeleteList(filename);
   }
 
-  return <>
-  
+  return <>  
   <h2 className="flex items-center justify-center font-bold">Welcome</h2> 
-  {Array.isArray(data) && data.length > 0 && data?.map((item,i)=>{
-    return <div key={item.id} className="flex items-center justify-center">
-        <div>
-              <label htmlFor="name">Name : </label>
-              <h4>{item.name}</h4>
-        </div>
-        <div>
-              <label htmlFor="description">Description : </label>
-                <p>{item.description}</p>
-        </div>
-    </div>
-  })}
-     <UploadPDF/>
- <div>
-  </div>
+ <div className="grid grid-cols-2 gap-4">
+    <div className="col-span-1 row-span-1 md:col-span-1 md:row-span-2 md:text-[0.625rem] lg:text-base">
+      <UploadPDF/> 
+      </div> 
+  <div className="col-span-1 row-span-1  md:col-span-1 md:row-span-2">
   <p>List </p>
-
 <ol style={{ listStyleType: 'decimal', paddingLeft: '20px' }}>
-  {!imageListoading && Array.isArray(imageListData) && imageListData.map((item, i) => (
+  {!imageListoading && Array.isArray(imageListData) && (imageListData.length > 0) ?( imageListData.map((item, i) => (
    <li key={i} style={{ padding: "5px", gap: "10px", position:'relative' }} >
   <DownloadPDF fileName={item} />
   <span onClick={() => handleDelete(item)} style={{   cursor: "pointer",color: "white", background: "none", border: "none", fontSize: "14px", marginLeft:"-14px", marginTop:"-4px", position:"absolute", backgroundColor:"red",  padding:'0 6px',  borderRadius:"20px" }}  aria-label="Delete" >X </span>
-</li>
-  ))}
+</li>)
+  )):( <p style={{ padding: "5px", color: "#888" }}>No data available</p>)}
 </ol>
+  </div> 
+   </div>
   </>;
 }
 

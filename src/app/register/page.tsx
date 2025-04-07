@@ -3,35 +3,59 @@
 import { Spin } from 'antd';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+interface initialFormDataProps{
+  username:string, password:string, cpassword: string, email:string, dob: string, role:string, name: string
+}
 
 const Register: React.FC = () => {
   const {data:session, status}=useSession();
   const [pending, setPending] = useState(false);
   const [isButton, setIsButton] = useState(false);
-  const [formData, setFormData] = useState<{username:string, password:string, cpassword: string, email:string, dob: string}>({
+  const initialFormData:initialFormDataProps={
     username: '',
     password: '',
     cpassword:'',
+    name:'',
     email:"",
-    dob: ""
-  });
-  const router = useRouter();
+    dob: "", 
+    role:"Admin"
+  }
+  const [formData, setFormData] = useState<initialFormDataProps>(initialFormData);
   useEffect(()=>{
     if (status === "authenticated" && session?.user) {
       setFormData({...formData, username:session?.user?.name??'', email:session?.user?.email??''})
     }
   },[session, status])
 
-  const fetchData = async (value: { username:string, password:string, cpassword: string, email:string, dob: string })=>{
-    setPending(false);
-     const response = await axios.post("/api/auth/register", value,{
-      headers: {"Content-Type": "application/json"}
-    });
-    if (response.data.status===201) {
-      router.replace("/dashboard");
+  const fetchData = async (value: { username:string, password:string, cpassword: string, email:string, dob: string, name: string })=>{
+   setPending(true); // assuming you're setting loading state
+
+try {
+  const response = await axios.post("/api/auth/register", value, {
+    headers: { "Content-Type": "application/json" },
+  });
+  if (response.status === 201) {
+    toast.success("Registered successfully!");
+    setFormData(initialFormData);
+    // router.replace("/dashboard"); 
+  }
+} catch (error: any) {
+  if (error.response) {
+    toast.error(`${error.response.data.message || "Something went wrong!"}`);
+    if (error.response.status === 409) {
+      toast.error("User already exists");
     }
+  } else if (error.request) {
+    toast.error("No response from server. Please try again.");
+  } else {
+    toast.error(`${error.message}`);
+  }
+} finally {
+  setPending(false);
+}
+
     }
   
   useEffect(()=>{
@@ -44,7 +68,7 @@ const Register: React.FC = () => {
     await fetchData(formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
@@ -66,6 +90,10 @@ const Register: React.FC = () => {
         <h3 className='mr-8'>Username</h3> 
         <input name='username' type="text" value={formData.username} onChange={handleChange} className="px-3 py-2 ml-16 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" autoComplete="username"/>
         </div> 
+             <div className='flex my-4'>
+        <h3 className='mr-8'>Name</h3> 
+        <input name='name' type="text" value={formData.name} onChange={handleChange} className="px-3 py-2 ml-24 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" autoComplete="name"/>
+        </div> 
         <div className='flex my-2 ml-1'>
         <h3 className='mr-8'>Password</h3> 
         <input name='password' type="password" value={formData.password} onChange={handleChange} className="px-3 py-2 ml-16 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" autoComplete="new-password"/>
@@ -81,6 +109,15 @@ const Register: React.FC = () => {
         <div className='flex my-2 ml-1'>
         <h3 className='mr-8'>Date Of Birth</h3> 
         <input name='dob' type="date" value={formData.dob} onChange={handleChange} className="ml-12 w-54 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+        </div>
+             <div className='flex my-2 ml-1'>
+        <h3 className='mr-8 pt-2'>Role </h3> 
+        <div className='flex my-2 ml-1'>
+          <select name="role" id="role" value={formData.role} onChange={handleChange} autoComplete="role" className='border-1 rounded p-2 ml-26'>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
         </div>
         <div className='flex justify-center align-middle'>
        <button disabled={isButton} type="submit"   className={`border border-blue-500 text-blue-500 mt-4 px-4 py-2 rounded-lg transition duration-300 ${isButton ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-500 hover:text-white"}`}>{pending ? "Loading..." : "Register"}</button>
