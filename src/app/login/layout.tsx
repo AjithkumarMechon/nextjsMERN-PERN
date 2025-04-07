@@ -17,17 +17,10 @@ export default function RootLayout({
 
       {/* Main layout (Sidebar + Main Content) */}
       <div className="flex flex-1 pt-[5.25rem] pb-[3rem]">
-        {/* Sidebar */}
-        <aside className="w-1/6 bg-gray-150 min-h-[calc(100vh-5.25rem-3rem)] fixed top-[5.25rem] left-0">
-          <Sidebar />
-        </aside>
-
-        {/* Main content */}
-        <div className="ml-[23.66%] w-full p-6 overflow-y-auto h-[calc(100vh-5.25rem-3rem)]">
-          <main className="h-full">
-            {children}
-          </main>
-        </div>
+           {/* Main content */}
+        <main className="w-full p-6 overflow-y-auto">
+          {children}
+        </main>
       </div>
 
       {/* Footer */}

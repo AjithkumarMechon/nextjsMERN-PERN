@@ -32,18 +32,18 @@ const handleUpload = async () => {
 };
 
   return (
-<div className="p-6 border-2 border-blue-500 max-w-xl w-full mx-auto">
-  <h2 className="mb-4 text-2xl font-semibold text-blue-600">Upload PDF</h2>  
-  <div className="flex flex-col md:flex-row gap-4">
+<div className="border-[0.125rem] border-blue-500 max-w-[100rem] w-full mx-auto p-[1rem] rounded-xl">
+  <h2 className="mb-[0.25rem] text-[1rem] font-semibold text-blue-600">Upload PDF</h2>  
+  <div className="flex flex-col md:flex-row gap-[0.25rem] w-[100]">
     <input
       type="file"
       accept="application/pdf"
       onChange={(e: any) => setFile(e.target.files[0])}
-        className="flex-1 border border-gray-300 rounded px-3 py-2"
+        className="flex-1 border border-gray-300 rounded px-[0.325rem] py-[0.425rem] md:text-[0.475rem] lg:text-[0.675rem]"
     />
     <button
       onClick={handleUpload}
-        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition "
+        className="px-6 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition  md:text-[0.475rem] lg:text-[0.675rem] lg:p-[0.25rem]"
     >
       Upload
     </button>

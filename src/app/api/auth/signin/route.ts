@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     const { username, password }: { username: string; password: string; }= body;  
       
     // Check if the user exists
-    const user=await pool.query("SELECT * FROM fullstacknextjs.user WHERE email = $1 OR username = $2", [username, username])
+    const user=await pool.query("SELECT * FROM fullstacknextjs.user WHERE email = $1 OR username = $2", [username, username]);
 
     if (!(user.rows.length>0)) {
       return NextResponse.json({ message: "Incorrect username or password" }, { status: 404 });

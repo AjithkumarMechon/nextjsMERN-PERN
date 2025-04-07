@@ -15,7 +15,7 @@ const NavDetails:React.FC =()=> {
   }, [pathname]);
 
   return (
-    <nav className="bg-white flex justify-between items-center px-6 py-3 mt-1 fixed top-6 w-full borderborder border-black shadow-lg" >
+    <nav className="bg-white flex justify-between items-center w-full borderborder border-black shadow-lg h-[4rem]" >
       {/* Left Side - Logo */}
       <div className="flex items-center pl-32">
         {/* <img
