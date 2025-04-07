@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import { createStructuredSelector } from "reselect";
 import { getDashboard } from "@/Redux/Selector/dashboard.selector";
 import { bindActionCreators } from "@reduxjs/toolkit";
-import { fetchDashboard } from "@/Redux/ActionThunk/dashboard.action";
 import { connect } from "react-redux";
 import { AppDispatch } from "@/Redux/Store/store";
 import UploadPDF from "@/Component/UploadComponent/uploader";
@@ -16,20 +15,19 @@ import { fetchDeleteList, fetchDocumentList } from "@/Redux/ActionThunk/document
 import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/document.selector";
 
 
- function Dashboard({actions, userData, imageList, imageListoading}) {
+ function Dashboard({actions, userData, imageList, imageListloading}) {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true); 
   const [imageListData, setImageListData] = useState<any>([]); 
 
 
   useEffect(()=>{
-    actions.fetchDashboard();
     actions.fetchDocumentList();
   },[actions])
 
     useEffect(()=>{
     if (imageList) {
-      setImageListData(imageList?.data);      
+      setImageListData(imageList);      
     }
   }, [imageList])
   
@@ -65,10 +63,10 @@ import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/docu
   <div className="col-span-1 row-span-1  md:col-span-1 md:row-span-2">
   <p>List </p>
 <ol style={{ listStyleType: 'decimal', paddingLeft: '20px' }}>
-  {!imageListoading && Array.isArray(imageListData) && (imageListData.length > 0) ?( imageListData.map((item, i) => (
+  {!imageListloading && Array.isArray(imageListData) && (imageListData.length > 0) ?( imageListData.map((item, i) => (
    <li key={i} style={{ padding: "5px", gap: "10px", position:'relative' }} >
-  <DownloadPDF fileName={item} />
-  <span onClick={() => handleDelete(item)} style={{   cursor: "pointer",color: "white", background: "none", border: "none", fontSize: "14px", marginLeft:"-14px", marginTop:"-4px", position:"absolute", backgroundColor:"red",  padding:'0 6px',  borderRadius:"20px" }}  aria-label="Delete" >X </span>
+  <DownloadPDF data={item} />
+  <span onClick={() => handleDelete(item.id)} style={{   cursor: "pointer",color: "white", background: "none", border: "none", fontSize: "14px", marginLeft:"-14px", marginTop:"-4px", position:"absolute", backgroundColor:"red",  padding:'0 6px',  borderRadius:"20px" }}  aria-label="Delete" >X </span>
 </li>)
   )):( <p style={{ padding: "5px", color: "#888" }}>No data available</p>)}
 </ol>
@@ -80,10 +78,10 @@ import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/docu
 const mapStateToProps=createStructuredSelector({
   userData: getDashboard,
   imageList:imageListSelector,
-  imageListoading:uploadImageListLoading
+  imageListloading:uploadImageListLoading
 });
 const mapDispatchToProps=(dispatch:AppDispatch)=>({
-  actions:bindActionCreators({fetchDashboard, fetchDocumentList, fetchDeleteList}, dispatch)
+  actions:bindActionCreators({fetchDocumentList, fetchDeleteList}, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

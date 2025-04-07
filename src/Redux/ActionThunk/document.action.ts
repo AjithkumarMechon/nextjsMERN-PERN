@@ -27,7 +27,7 @@ try {
 
 export const fetchDeleteList=createAsyncThunk<any,any,{ rejectValue: string }>("upload/Delete", async(filename, thunkApi)=>{
 try {
-    const response=await HTTP.doDelete(`api/documentDelete/filename=<typeData>`.replace('<typeData>', encodeURIComponent(filename)));
+    const response=await HTTP.doDelete(`api/documentDelete/id=<typeData>`.replace('<typeData>', encodeURIComponent(filename)));
       if(response.status===201){
        await thunkApi.dispatch(fetchDocumentList(null));
     }

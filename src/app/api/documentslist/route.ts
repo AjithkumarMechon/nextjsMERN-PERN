@@ -6,10 +6,10 @@ export const config = { api: { bodyParser: false } };
 export async function GET() {
   try {
     const result = await pool.query(
-      'SELECT filename FROM fullstacknextjs.upload'
+      'SELECT * FROM fullstacknextjs.upload'
     );
 
-    const filenames = result.rows.map((row: { filename: string }) => row.filename);
+    const filenames = result.rows.map((row: {id:number, filename: string }) =>({id:row.id,filename:row.filename}));
 
     return NextResponse.json({data:filenames}, { status: 200 });
   } catch (err: any) {
