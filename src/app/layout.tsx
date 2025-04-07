@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "AKTrends",
   description: "Hygineic food essential to our healthy life. You and your family health is our periority!.",
    icons: {
-    icon: "favicon.svg.svg", 
+    icon: "favicon.svg", 
   },
 };
 
