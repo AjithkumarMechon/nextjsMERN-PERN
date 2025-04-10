@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import UserDropdown from "@/component/signoutDropdown/UserSignoutDropdown";
+import UserDropdown from "@/Component/signoutDropdown/UserSignoutDropdown";
 
 const NavDetails:React.FC =()=> {
   const { data: session } = useSession();

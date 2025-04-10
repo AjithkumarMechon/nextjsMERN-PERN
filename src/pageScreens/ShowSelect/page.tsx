@@ -7,7 +7,7 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import PersonCard from '@/component/getDetailsComponent/GetDetailsComponent';
+import PersonCard from '@/Component/getDetailsComponent/GetDetailsComponent';
 
 const SelectedList=({actions, selectedData, getLoading})=>{
   const [data, setData]=useState({});

@@ -12,7 +12,7 @@ import { AppDispatch } from "@/Redux/Store/store";
 import { fetchDeleteList, fetchDocumentList } from "@/Redux/ActionThunk/document.action";
 import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/document.selector";
 import { fetchDashboard } from "@/Redux/ActionThunk/dashboard.action";
-import PersonCardList from "@/component/getDetailsComponent/GetDetailListComponent";
+import PersonCardList from "@/Component/getDetailsComponent/GetDetailListComponent";
 
 function Dashboard({actions, userData, getLoading}) {
   const { data: session, status } = useSession();
