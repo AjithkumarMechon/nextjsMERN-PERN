@@ -1,2 +1,1 @@
-'use client';
-export { default } from "@/pages/showSelect/page";
+export { default } from "@/pageScreens/ShowSelect/page";

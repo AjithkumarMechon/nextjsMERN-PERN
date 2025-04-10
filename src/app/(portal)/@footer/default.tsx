@@ -1,2 +1,1 @@
-// export { default } from "@/pages/Footer/page";
-export { default } from "@/pages/Footer/page";
+export { default } from "@/pageScreens/Footer/page";

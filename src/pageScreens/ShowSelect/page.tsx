@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import PersonCard from '@/component/getDetailsComponent/GetDetailsComponent';
 import { fetchShowSelect } from '@/Redux/ActionThunk/selectionshow.action';

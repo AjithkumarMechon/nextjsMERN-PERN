@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-import { MailOutlined } from '@ant-design/icons/lib/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { redirect } from 'next/navigation';
@@ -10,7 +9,6 @@ type MenuItem = Required<MenuProps>['items'][number];
 const items: MenuItem[] = [
   {
     key: '1',
-    icon: <MailOutlined />,
     label: 'dashboarrd',
     children: [
       { key: '11', label: 'dashboard' },
@@ -53,7 +51,7 @@ interface LevelKeysProps {
 const getLevelKeys = (items1: LevelKeysProps[]) => {
   const key: Record<string, number> = {};
   const func = (items2: LevelKeysProps[], level = 1) => {
-    items2.forEach((item) => {
+    items2.forEach((item:any) => {
       if (item.key) {
         key[item.key] = level;
       }
@@ -68,7 +66,7 @@ const getLevelKeys = (items1: LevelKeysProps[]) => {
 
 const levelKeys = getLevelKeys(items as LevelKeysProps[]);
 
-const App: React.FC = () => {
+const SideBar: React.FC = () => {
   const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
   const onOpenChange: MenuProps['onOpenChange'] = (openKeys) => {
     const currentOpenKey = openKeys.find((key) => stateOpenKeys.indexOf(key) === -1);
@@ -121,4 +119,4 @@ const onClick: MenuProps['onClick'] = (e) => {
   );
 };
 
-export default App;
+export default SideBar;

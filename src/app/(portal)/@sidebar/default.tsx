@@ -1,2 +1,1 @@
-export { default } from "@/pages/Sidebar/page";
-
+export { default } from  "@/pageScreens/SideBar/page";

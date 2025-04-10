@@ -1,1 +1,1 @@
-export { default } from "@/pages/NavBar/page";
+export { default } from "@/pageScreens/NavBar/page";
