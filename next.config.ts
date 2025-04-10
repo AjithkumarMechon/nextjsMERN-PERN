@@ -1,24 +1,25 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
 
-const nextConfig: NextConfig = {
-  /* config options here */
-  reactStrictMode: true, 
-   experimental: {
+  experimental: {
     nextScriptWorkers: false,
     scrollRestoration: false,
+    esmExternals: true
   },
-  typescript:{
-  ignoreBuildErrors:true,
+
+  typescript: {
+    ignoreBuildErrors: true
   },
+
   async rewrites() {
     return [
       {
-        source:'/',
-        destination:'/login'
+        source: '/',
+        destination: '/login'
       }
-    ]
+    ];
   }
-
 };
 
-export default nextConfig;
+module.exports = nextConfig;

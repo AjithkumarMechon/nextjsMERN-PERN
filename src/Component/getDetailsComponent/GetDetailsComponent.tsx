@@ -1,9 +1,8 @@
+"use client";
 import React from 'react';
 import PropTypes from 'prop-types';
 import { calculateAge } from '@/lib/calculateAge';
 import { formatDate } from '@/lib/dateFormat';
-
-
 
 const PersonCard = ({
   name,

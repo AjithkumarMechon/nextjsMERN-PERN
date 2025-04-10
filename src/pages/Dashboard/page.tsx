@@ -1,4 +1,3 @@
-'use client';
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";
@@ -14,9 +13,7 @@ import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/docu
 import { fetchDashboard } from "@/Redux/ActionThunk/dashboard.action";
 import PersonCardList from "@/component/getDetailsComponent/GetDetailListComponent";
 
-
-
- function Dashboard({actions, userData, getLoading}) {
+function Dashboard({actions, userData, getLoading}) {
   const { data: session, status } = useSession();
   const [loading, setLoading] = useState(true); 
   const [userlistData, setUserListData] = useState<any>([]); 

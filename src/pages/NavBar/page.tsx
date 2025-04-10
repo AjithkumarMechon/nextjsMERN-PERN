@@ -1,11 +1,10 @@
 'use client';
 import { useSession } from "next-auth/react";
-import dynamic from "next/dynamic";
 import { redirect, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import UserDropdown from "@/component/signoutDropdown/UserSignoutDropdown";
 
-const UserDropdown = dynamic(() => import("../../component/signoutDropdown/UserSignoutDropdown"), {ssr: false});
 const NavDetails:React.FC =()=> {
   const { data: session } = useSession();
   const [token, setToken] = useState<string | null>(null);

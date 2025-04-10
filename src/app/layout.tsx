@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SessionProviderWrapper from "@/component/SessionProviderGoogle/SessionProviderWrapper";
 import ReduxProvider from "@/Redux/Store/ReduxProvider";
+import SessionProviderWrapper from "@/component/SessionProviderGoogle/SessionProviderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
