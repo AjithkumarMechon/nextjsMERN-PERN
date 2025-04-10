@@ -39,3 +39,59 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Details of Project
 Project make technology Nextjs
 React, Nodejs, ExpressJs, MongoDb and Postgresql
+
+project-root/
+│
+├── public/                  # Static assets (images, fonts, etc.)
+│
+├── src/                     # All source code lives here
+│   ├── app/                 # Next.js 13+ App Directory (routing, layouts, pages)
+│   │   ├── layout.tsx       # Root layout
+│   │   ├── page.tsx         # Root page
+│   │   └── ...              # Other routes like /about, /dashboard, etc.
+│
+│   ├── components/          # Reusable UI components
+│   │   ├── Button.tsx
+│   │   ├── Navbar.tsx
+│   │   └── ...
+│
+│   ├── styles/              # Global and modular CSS/SCSS files
+│   │   ├── globals.css
+│   │   ├── variables.scss
+│   │   └── ...
+│
+│   ├── pages/               # If using pages directory (optional)
+│   │   ├── api/             # API route handlers (REST)
+│   │   └── ...
+│
+│   ├── lib/                 # Utilities, helper functions, 3rd party integrations
+│   │   ├── apiClient.ts     # Axios instance or fetch config
+│   │   ├── auth.ts
+│   │   └── ...
+│
+│   ├── models/              # Database models (Mongoose, Prisma, etc.)
+│   │   ├── userModel.ts
+│   │   └── ...
+│
+│   ├── config/              # Configuration files (env, constants)
+│   │   ├── db.ts            # DB connection
+│   │   ├── siteConfig.ts
+│   │   └── ...
+│
+│   ├── redux/               # Redux slices, store configuration
+│   │   ├── store.ts
+│   │   ├── userSlice.ts
+│   │   └── ...
+│
+│   ├── utils/               # Reusable utility functions
+│   │   ├── formatDate.ts
+│   │   └── ...
+│
+│   └── types/               # TypeScript types and interfaces
+│       ├── index.ts
+│       └── ...
+│
+├── .env                     # Environment variables
+├── next.config.js           # Next.js config
+└── tsconfig.json            # TypeScript config
+

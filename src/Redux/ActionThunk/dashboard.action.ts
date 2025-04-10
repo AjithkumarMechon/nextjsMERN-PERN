@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { HTTP } from "../Http/http";
+import { HTTP } from "../../utils/http";
 
 export const fetchDashboard=createAsyncThunk("dashboard/Get", async(_, thunkApi)=>{
 try {

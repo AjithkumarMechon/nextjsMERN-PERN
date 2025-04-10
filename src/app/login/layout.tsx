@@ -1,6 +1,5 @@
-import Footer from "@/Component/Footer/page";
-import NavDetails from "@/Component/NavBar/NavDetails";
-import Sidebar from "@/Component/Sidebar/page";
+import Footer from "@/pageScreens/Footer/page";
+import NavDetails from "@/pageScreens/NavBar/page";
 
 export default function RootLayout({
   children,

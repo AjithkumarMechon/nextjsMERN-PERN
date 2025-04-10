@@ -35,11 +35,13 @@ export const dashboardSlice=createSlice({
 interface initialStatePostProps{
     loading:boolean;
     data:any;
+    selectedData:any;
     error: string | null;
 }
 const initialPostState:initialStatePostProps={
     loading:false,
     data:[],
+    selectedData:{},
     error:null,
 }
 export const dashboardPostSlice=createSlice({
@@ -59,3 +61,4 @@ export const dashboardPostSlice=createSlice({
         })
     }
 })
+
