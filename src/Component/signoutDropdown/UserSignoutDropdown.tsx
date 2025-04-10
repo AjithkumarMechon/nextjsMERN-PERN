@@ -28,13 +28,13 @@ const UserDropdown = ({ session, token }: { session: any; token: string | null }
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        <Image
-          src={"/profile_logo.jpg"}
-          alt="User"
-          width={40}
-          height={40}
-          className="w-10 h-10 rounded-full"
-        />
+     <Image
+        src="/profile_logo.jpg"
+        alt="User"
+        className="w-auto h-auto rounded-full"
+        width={40}
+        height={40}
+/>
         <h2 className="text-sm font-medium">{session?.user?.email ?? "User"}</h2>
       </div>      
      {isOpen && (        

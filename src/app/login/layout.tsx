@@ -1,6 +1,5 @@
-import Footer from "@/Component/Footer/page";
-import NavDetails from "@/Component/NavBar/NavDetails";
-import Sidebar from "@/Component/Sidebar/page";
+import Footer from "@/pages/Footer/page";
+import NavBar from "@/pages/NavBar/page";
 
 export default function RootLayout({
   children,
@@ -12,7 +11,7 @@ export default function RootLayout({
 
       {/* Navbar */}
       <header className="fixed top-[20px] left-0 w-full z-40 bg-gray-800 text-white h-[4rem]">
-        <NavDetails />
+        <NavBar />
       </header>
 
       {/* Main layout (Sidebar + Main Content) */}

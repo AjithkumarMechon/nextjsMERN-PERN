@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { HTTP } from "../Http/http";
+import { HTTP } from "../../utils/http";
 
 
 export const fetchDocumentList=createAsyncThunk<any,any,{ rejectValue: string }>("upload/Get", async(_, thunkApi)=>{

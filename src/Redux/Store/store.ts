@@ -1,14 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { dashboardPostSlice, dashboardSlice } from "../Reducer/dashboard.reducer";
 import { deleteListSlice, getDocumentDownloadSlice, uploadDocumentSlice } from "../Reducer/document.reducer";
+import { ShowSelectSlice } from "../Reducer/showSelect.reducer";
 
 const store=configureStore({
     reducer: {
-        dashboard:combineReducers({
+            dashboard:combineReducers({
                 postDashboard: dashboardPostSlice.reducer,
                 getDashboard: dashboardSlice.reducer,
-        }),
-        documentData:combineReducers({
+            }),
+            showSelection:ShowSelectSlice,
+            documentData:combineReducers({
                 uploaded:uploadDocumentSlice.reducer,
                 downloaded:getDocumentDownloadSlice.reducer,
                 deleteFile:deleteListSlice.reducer

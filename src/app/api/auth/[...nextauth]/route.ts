@@ -1,8 +1,9 @@
 import User from "@/models/user";
-import { dbConnect } from "@/utils/dbConnect"; // Ensure DB connection
+import { postgresConnect } from "@/utils/dbConnect"; // Ensure DB connection
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import jwt from "jsonwebtoken";
+const pool=require('@/utils/postgresql');
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,11 +18,8 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ account, profile }) {
       if (!profile?.email) return false;
-
-      await dbConnect(); // Ensure database connection
-
-      const existingUser = await User.findOne({ email: profile.email });
-
+      await postgresConnect();// Ensure database connection
+      const existingUser = await pool.query("SELECT * FROM fullstacknextjs.user WHERE email = $1",[profile.email]);
       if (!existingUser) {
         return "/register"; // Redirect to register page instead of blocking login
       }
@@ -30,9 +28,8 @@ export const authOptions: NextAuthOptions = {
     },
  async jwt({ token, account, profile }) {
       if (profile?.email) {
-        await dbConnect(); // Ensure DB connection
-
-        const existingUser = await User.findOne({ email: profile.email });
+        await postgresConnect(); // Ensure DB connection       
+        const existingUser = await await pool.query("SELECT * FROM fullstacknextjs.user WHERE email = $1",[profile.email]);
 
         if (existingUser) {
           token.id = existingUser.id.toString();
