@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import PersonCard from '@/component/getDetailsComponent/GetDetailsComponent';
 import { fetchShowSelect } from '@/Redux/ActionThunk/selectionshow.action';
 import { showSelectionLoading, showSelectionSelector } from '@/Redux/Selector/showSelection.selector';
 import { AppDispatch } from '@/Redux/Store/store';
@@ -8,6 +7,7 @@ import { bindActionCreators } from '@reduxjs/toolkit';
 import { Spin } from 'antd';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import PersonCard from '@/component/getDetailsComponent/GetDetailsComponent';
 
 const SelectedList=({actions, selectedData, getLoading})=>{
   const [data, setData]=useState({});

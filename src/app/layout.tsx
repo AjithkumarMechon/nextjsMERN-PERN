@@ -30,11 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>            
-            <SessionProviderWrapper>
-              <ReduxProvider>
-                 {children}                 
-              </ReduxProvider>
-            </SessionProviderWrapper>   
+          <ReduxProvider>
+              <SessionProviderWrapper>
+              {children}                 
+              </SessionProviderWrapper>   
+          </ReduxProvider>
       </body>
     </html>
   );
