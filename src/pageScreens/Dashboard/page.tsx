@@ -13,6 +13,8 @@ import { fetchDeleteList, fetchDocumentList } from "@/Redux/ActionThunk/document
 import { imageListSelector, uploadImageListLoading } from "@/Redux/Selector/document.selector";
 import { fetchDashboard } from "@/Redux/ActionThunk/dashboard.action";
 import PersonCardList from "@/Component/getDetailsComponent/GetDetailListComponent";
+import useCounter from "@/Component/customHooks/useCounter";
+import ContentListScreen from "../Content/page";
 
 function Dashboard({actions, userData, getLoading}) {
   const { data: session, status } = useSession();
@@ -58,12 +60,14 @@ if (loading && getLoading) {
    redirect(`/showselect/${valueId}`);
   }
 
+
+
   return <>  <main className="min-h-screen bg-white p-6 m-4 mx-auto rounded-xl">
       <header>
         <h2 className="text-3xl font-bold text-center mb-10">Welcome</h2>
-      </header>
-
-      <section>
+      </header>    
+      
+    {/* <section>
         <h1 className="text-xl font-semibold mb-4">List</h1>
         {Array.isArray(userlistData) && userlistData.length > 0 ? (
           userlistData.map((item, i) => (
@@ -80,6 +84,10 @@ if (loading && getLoading) {
         ) : (
           <p className="text-gray-500 p-2">No data available</p>
         )}
+      </section>  */}
+
+      <section>
+        <ContentListScreen/>
       </section>
     </main>
   </>;

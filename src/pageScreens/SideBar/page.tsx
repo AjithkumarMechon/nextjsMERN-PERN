@@ -6,41 +6,52 @@ import { redirect } from 'next/navigation';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
+const reDirectItems = {
+  "Dashboard": "dashboard",
+  "Women's Fashion": "womensfashion",
+  "Men's Fashion": "mensfashion",
+  "Electronics": "electronics",
+  "Home & Lifestyle": "home&lifestyle"
+};
+
+// const reDirectItems = {
+//   "Dashboard": "dashboard",
+//   "Women's Fashion": "dashboard",
+//   "Men's Fashion": "dashboard",
+//   "Electronics": "dashboard",
+//   "Home & Lifestyle": "dashboard"
+// };
+
+
 const items: MenuItem[] = [
   {
     key: '1',
-    label: 'dashboarrd',
+    label: 'Dashboard',
+    // children: [
+    //   { key: '11', label: 'dashboard' },
+    // ],
+  },
+  {
+    key: '2',
+    // icon: <AppstoreOutlined />,
+    label: `Women's Fashion`,    
     children: [
-      { key: '11', label: 'dashboard' },
+      { key: '21', label: `Women's Fashion` },
     ],
   },
-  // {
-  //   key: '2',
-  //   icon: <AppstoreOutlined />,
-  //   label: 'Navigation Two',
-  //   children: [
-  //     { key: '21', label: 'Option 1' },
-  //     { key: '22', label: 'Option 2' },
-  //     {
-  //       key: '23',
-  //       label: 'Submenu',
-  //       children: [
-  //         { key: '231', label: 'Option 1' },
-  //         { key: '232', label: 'Option 2' },
-  //         { key: '233', label: 'Option 3' },
-  //       ],
-  //     },
-  //     {
-  //       key: '24',
-  //       label: 'Submenu 2',
-  //       children: [
-  //         { key: '241', label: 'Option 1' },
-  //         { key: '242', label: 'Option 2' },
-  //         { key: '243', label: 'Option 3' },
-  //       ],
-  //     },
-  //   ],
-  // },
+    {
+    key: '3',
+    label: `Men's Fashion`,
+    children: [
+      { key: '31', label: `Men's Fashion`},
+    ],
+  },{
+    key: '4',
+    label: `Electronics`,
+  },{
+    key: '5',
+    label: `Home & Lifestyle`
+  },
   ];
 
 interface LevelKeysProps {
@@ -105,7 +116,9 @@ const onClick: MenuProps['onClick'] = (e) => {
   };
   const clickedItem = findItem(items, e.key);
   const label = (clickedItem as any)?.label;
-  redirect(`/${label}`);  
+  const redirectLink=reDirectItems[label];
+  redirect(`/${redirectLink}`);
+
 };
   return (
     <Menu

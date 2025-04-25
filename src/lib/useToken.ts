@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 // Custom Hook for Token Management
-export const userToken = () => {
+export const useToken = () => {
     const [token, setToken] = useState<string | null>(null);
 
     useEffect(() => {
