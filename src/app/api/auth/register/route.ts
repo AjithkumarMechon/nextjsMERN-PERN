@@ -26,7 +26,7 @@ await pool.query(`CREATE TABLE IF NOT EXISTS fullstacknextjs."user" (
 }
 
 
-interface UserBody {  username: string; password: string; name: string; email: string|null; dob: Date | string; salary: number; work: string|null; weight: number;   height: number;    gender: string; education: string|null; mobile: string|null; role?: string;   }
+interface UserBody { username: string; password: string; name: string; email: string|null; dob: Date | string; salary: number; work: string|null; weight: number;   height: number;    gender: string; education: string|null; mobile: string|null; role?: string; }
 export async function POST(req: Request) {
 try {
   await postgresConnect();
