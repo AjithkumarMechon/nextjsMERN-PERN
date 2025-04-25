@@ -10,7 +10,7 @@ interface initialFormDataProps{
 }
 
 const AddProduct: React.FC = () => {
-//   const {data:session, status}=useSession();
+  const {data:session, status}=useSession();
   const [pending, setPending] = useState(false);
   const initialFormData:initialFormDataProps={
     productImage: '',
@@ -33,10 +33,11 @@ const AddProduct: React.FC = () => {
    setPending(true); // assuming you're setting loading state
 
 try {
-  const response = await axios.post("/api/addproducts", value, {
+  const response = await axios.post("api/addproducts", value, {
     headers: { "Content-Type": "application/json" },
   });
-  if (response.status === 201) {
+  console.log(response,"resjhg")
+  if (response?.data?.status === 201) {
     toast.success("Registered successfully!");
     setFormData(initialFormData);
     // router.replace("/dashboard"); 
@@ -115,7 +116,7 @@ const handleUpload = async (file) => {
       
 };
   return (<>
-    <button className="flex w-16 p-2 m-4 rounded-lg text-blue-300 border border-blue-400 justify-start items-start transition duration-300 hover:text-white hover:bg-blue-500"><a href="/login">Login</a></button>
+    {/* <button className="flex w-16 p-2 m-4 rounded-lg text-blue-300 border border-blue-400 justify-start items-start transition duration-300 hover:text-white hover:bg-blue-500"><a href="/login">Login</a></button> */}
     <div className='flex justify-center items-center text-center'>
       <form method="POST" action="/login" onSubmit={handleSubmit} >
       <h2 className='text-[24px] my-4'>Register Form</h2>

@@ -1,3 +1,4 @@
+"use client";
 import ProductCard from '@/Component/productCard/ProductCard';
 import { HTTP } from '@/utils/http'
 import React, { useEffect, useState } from 'react'
@@ -8,7 +9,7 @@ const [data, setdata] = useState([])
   useEffect(()=>{
     try {
       const fetchData=async()=>{
-        const response =await HTTP.doGet("/api/productsList");
+        const response =await HTTP.doGet("api/productsList");
         setdata(response.data.data);
       }
       fetchData();      
