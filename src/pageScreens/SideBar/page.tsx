@@ -11,7 +11,8 @@ const reDirectItems = {
   "Women's Fashion": "womensfashion",
   "Men's Fashion": "mensfashion",
   "Electronics": "electronics",
-  "Home & Lifestyle": "home&lifestyle"
+  "Home & Lifestyle": "home&lifestyle",
+ "Add Products (Temperary)":"addproducts"
 };
 
 // const reDirectItems = {
@@ -51,6 +52,10 @@ const items: MenuItem[] = [
   },{
     key: '5',
     label: `Home & Lifestyle`
+  },
+  {
+    key: '6',
+    label: `Add Products (Temperary)`
   },
   ];
 
