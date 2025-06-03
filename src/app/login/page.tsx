@@ -73,9 +73,10 @@ useEffect(() => {
         <form onSubmit={handleSubmit} className="w-80">
           <h2 className="text-2xl my-4">Login</h2>
           <div className="flex flex-col my-2">
-            <label>Username</label>
+            <label htmlFor="username">Username</label>
             <input
               name="username"
+              id="username"
               type="text"
               value={formData.username}
               onChange={(e) =>
@@ -86,16 +87,17 @@ useEffect(() => {
             />
           </div>
           <div className="flex flex-col my-2">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <input
               name="password"
               type="password"
+              id="password"
               value={formData.password}
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, password: e.target.value }))
               }
               className="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              autoComplete="current-password"
+              autoComplete="password"
             />
           </div>
           <button
