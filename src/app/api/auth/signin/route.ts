@@ -40,7 +40,10 @@ export async function POST(req: Request) {
     );
     if (!isPasswordValid) {
       return NextResponse.json(
-        { message: "Invalid user credentials" },
+        {
+          message: "Invalid user credentials",
+          data: `${normalPassword}, Invali45454d user credentials`,
+        },
         { status: 401 }
       );
     }

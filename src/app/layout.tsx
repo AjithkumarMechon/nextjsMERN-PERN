@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ReduxProvider from "@/Redux/Store/ReduxProvider";
 import SessionProviderWrapper from "@/Component/SessionProviderGoogle/SessionProviderWrapper";
+import { Toaster } from "react-hot-toast";
+import ReactQueryClientProvider from "@/tanstack/store/ReactQueryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,9 +17,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "AKTrends",
-  description: "Hygineic food essential to our healthy life. You and your family health is our periority!.",
-   icons: {
-    icon: "favicon.svg", 
+  description:
+    "Hygineic food essential to our healthy life. You and your family health is our periority!.",
+  icons: {
+    icon: "favicon.svg",
   },
 };
 
@@ -29,14 +31,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>            
-          <ReduxProvider>
-              <SessionProviderWrapper>
-              {children}                 
-              </SessionProviderWrapper>   
-          </ReduxProvider>
+      <body>
+        <ReactQueryClientProvider>
+          <SessionProviderWrapper>
+            {children}
+            <Toaster />
+          </SessionProviderWrapper>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
 }
- 
