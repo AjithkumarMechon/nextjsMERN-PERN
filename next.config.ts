@@ -5,21 +5,21 @@ const nextConfig = {
   experimental: {
     nextScriptWorkers: false,
     scrollRestoration: false,
-    esmExternals: true
+    esmExternals: true,
   },
 
   typescript: {
-    ignoreBuildErrors: true
+    ignoreBuildErrors: true,
   },
 
   async rewrites() {
     return [
       {
-        source: '/',
-        destination: '/login'
-      }
+        source: "/",
+        destination: "/dashboard",
+      },
     ];
-  }
+  },
 };
 
 module.exports = nextConfig;

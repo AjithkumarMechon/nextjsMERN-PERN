@@ -8,27 +8,31 @@ import ContentListScreen from "../Content/page";
 import { useDashboard } from "@/tanstack/fetchDashboard";
 
 function Dashboard() {
-  const { data: session, status } = useSession();
-  const [loading, setLoading] = useState(true);
+  // const { data: session, status } = useSession();
 
   const { data: userlistData, isLoading, error } = useDashboard();
 
-  useEffect(() => {
-    if (status === "loading") return; // Wait for session to load
-    const accessToken = (session as any)?.accessToken;
-    if (accessToken) {
-      Cookies.set("token", accessToken);
-      setLoading(false);
-    } else {
-      const token = Cookies.get("token");
-      if (!token) {
-        redirect("/login"); // Redirect only if no session and no token
-      }
-      setLoading(false);
-    }
-  }, [session, status]);
+  // useEffect(() => {
+  //   if (status === "loading") return; // Wait for session to load
+  //   const accessToken = (session as any)?.accessToken;
+  //   if (accessToken) {
+  //     Cookies.set("token", accessToken);
+  //     setLoading(false);
+  //   } else {
+  //     const token = Cookies.get("token");
+  //     if (!token) {
+  //       redirect("/login"); // Redirect only if no session and no token
+  //     }
+  //     setLoading(false);
+  //   }
+  // }, [session, status]);
 
-  if (loading || isLoading) {
+  if (error) {
+    console.error("Error fetching dashboard data:", error);
+    return <div>Error loading dashboard data.</div>;
+  }
+
+  if (isLoading) {
     return (
       <div className="fixed inset-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-white z-50">
         <Spin size="large" />
